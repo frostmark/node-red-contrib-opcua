@@ -34,7 +34,7 @@ module.exports = function (RED) {
 
   function OpcUaClientNode(n) {
     RED.nodes.createNode(this, n);
-    this.name = n.id;
+    this.name = n.name;
     this.action = n.action;
     this.time = n.time;
     this.timeUnit = n.timeUnit;
