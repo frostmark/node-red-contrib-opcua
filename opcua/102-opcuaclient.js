@@ -34,7 +34,7 @@ module.exports = function (RED) {
 
   function OpcUaClientNode(n) {
     RED.nodes.createNode(this, n);
-    this.name = n.name;
+    this.name = n.id;
     this.action = n.action;
     this.time = n.time;
     this.timeUnit = n.timeUnit;
@@ -182,6 +182,7 @@ module.exports = function (RED) {
           verbose_log("async series - connecting ", opcuaEndpoint.endpoint);
           try {
             set_node_status_to("connecting");
+            // console.log(node.client)
             node.client.connect(opcuaEndpoint.endpoint, callback);
           } catch (err) {
             callback(err);
@@ -213,6 +214,7 @@ module.exports = function (RED) {
           node.error(node.name + " OPC UA connection error: " + err.message);
           verbose_log(err);
           node.session = null;
+          node.client = null;
           close_opcua_client(set_node_status_to("connection error"));
         }
       });
