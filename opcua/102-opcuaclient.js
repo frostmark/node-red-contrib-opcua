@@ -214,7 +214,6 @@ module.exports = function (RED) {
           node.error(node.name + " OPC UA connection error: " + err.message);
           verbose_log(err);
           node.session = null;
-          node.client = null;
           close_opcua_client(set_node_status_to("connection error"));
         }
       });
